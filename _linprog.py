@@ -1,4 +1,5 @@
 """
+source: https://github.com/scipy/scipy/issues/7806#issuecomment-325717176
 A top-level linear programming interface. Currently this interface only
 solves linear programming problems via the Simplex Method.
 

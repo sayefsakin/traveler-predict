@@ -1,4 +1,5 @@
 """
+source: https://github.com/scipy/scipy/issues/7806#issuecomment-325717176
 Routines for removing redundant (linearly dependent) equations from linear
 programming equality constraints.
 """

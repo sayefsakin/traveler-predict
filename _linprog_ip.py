@@ -1,4 +1,5 @@
 """
+source: https://github.com/scipy/scipy/issues/7806#issuecomment-325717176
 An interior-point method for linear programming.
 """
 # Author: Matt Haberland
