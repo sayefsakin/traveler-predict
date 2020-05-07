@@ -1,0 +1,141 @@
+\documentclass[journal]{vgtc}                % final (journal style)
+%\documentclass[review,journal]{vgtc}         % review (journal style)
+%\documentclass[widereview]{vgtc}             % wide-spaced review
+%\documentclass[preprint,journal]{vgtc}       % preprint (journal style)
+
+%% Uncomment one of the lines above depending on where your paper is
+%% in the conference process. ``review'' and ``widereview'' are for review
+%% submission, ``preprint'' is for pre-publication, and the final version
+%% doesn't use a specific qualifier.
+
+%% These few lines make a distinction between latex and pdflatex calls and they
+%% bring in essential packages for graphics and font handling.
+%% Note that due to the \DeclareGraphicsExtensions{} call it is no longer necessary
+%% to provide the the path and extension of a graphics file:
+%% \includegraphics{diamondrule} is completely sufficient.
+%%
+\ifpdf%                                % if we use pdflatex
+  \pdfoutput=1\relax                   % create PDFs from pdfLaTeX
+  \pdfcompresslevel=9                  % PDF Compression
+  \pdfoptionpdfminorversion=7          % create PDF 1.7
+  \ExecuteOptions{pdftex}
+  \usepackage{graphicx}                % allow us to embed graphics files
+  \DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg} % for pdflatex we expect .pdf, .png, or .jpg files
+\else%                                 % else we use pure latex
+  \ExecuteOptions{dvips}
+  \usepackage{graphicx}                % allow us to embed graphics files
+  \DeclareGraphicsExtensions{.eps}     % for pure latex we expect eps files
+\fi%
+
+%% it is recomended to use ``\autoref{sec:bla}'' instead of ``Fig.~\ref{sec:bla}''
+\graphicspath{{figures/}{pictures/}{images/}{./}} % where to search for the images
+
+\usepackage{microtype}                 % use micro-typography (slightly more compact, better to read)
+\PassOptionsToPackage{warn}{textcomp}  % to address font issues with \textrightarrow
+\usepackage{textcomp}                  % use better special symbols
+\usepackage{mathptmx}                  % use matching math font
+\usepackage{times}                     % we use Times as the main font
+\renewcommand*\ttdefault{txtt}         % a nicer typewriter font
+\usepackage{cite}
+\usepackage{amsmath}
+%% If you are submitting a paper to a conference for review with a double
+%% blind reviewing process, please replace the value ``0'' below with your
+%% OnlineID. Otherwise, you may safely leave it at ``0''.
+\onlineid{0}
+
+%% declare the category of your paper, only shown in review mode
+\vgtccategory{Research}
+
+%% Paper title - 1 pt for descriptive title
+\title{Automatic Feature Detection in Hardware Performance Metric Data based on User Feedback}
+
+%% This is how authors are specified in the journal style
+
+%% indicate IEEE Member or Student Member in form indicated below
+%% 1 pt for name
+\author{Sayef Azad Sakin}
+\authorfooter{
+%% insert punctuation at end of each item
+\item
+Sayef Azad Sakin is a graduate student at the University of Arizona. E-mail:sayefsakin@email.arizona.edu.
+}
+
+%other entries to be set up for journal
+%\shortauthortitle{Firstauthor \MakeLowercase{\textit{et al.}}: Paper Title}
+
+%% Abstract section - 5 pts
+\abstract{
+Understanding large scale runtime system behavior becomes harder as the hardware performance metric data grows significantly over time. Identifying
+relationship within different performance metric could be accessory to assessing and evaluating these data. The Traveler project provides an integrated
+visualization system for visualizing performance metric data. It uses OTF2 execution traces and present them over several interactive views like - Gantt
+view, Utilization view, Time series view etc. Highlighting key features from these views is crucial to artifact detection and optimization of a runtime system.
+Therefore, providing prediction of different features in advance will be helpful for user to browse, lookup, and identify them. Also the prediction could be
+useful for any backend caching mechanism to load data in advance, hence improving user interactivity. In this project, an automated learning based feature
+prediction model has been proposed for analysing temporal performance metric data labeled by the user and providing prediction of
+interesting features for any future performance data. A dedicated python class has been developed for the Traveler platform to provide the feature prediction,
+which could be utilized by any backend data model or directly integrated as a module with the frontend controller.
+} % end of abstract
+
+%% Keywords that describe your work. Will show as 'Index Terms' in journal
+%% please capitalize first letter and insert punctuation after last keyword
+%\keywords{Radiosity, global illumination, constant time}
+
+%% ACM Computing Classification System (CCS). 
+%% See <http://www.acm.org/class/1998/> for details.
+%% The ``\CCScat'' command takes four arguments.
+
+%\CCScatlist{ % not used in journal version
+% \CCScat{K.6.1}{Management of Computing and Information Systems}%
+%{Project and People Management}{Life Cycle};
+% \CCScat{K.7.m}{The Computing Profession}{Miscellaneous}{Ethics}
+%}
+
+%% Uncomment below to include a teaser figure.
+%   \teaser{
+%   \centering
+%   \includegraphics[width=16cm]{CypressView}
+%   \caption{In the Clouds: Vancouver from Cypress Mountain.}
+%  }
+
+%% Uncomment below to disable the manuscript note
+%\renewcommand{\manuscriptnotetxt}{}
+
+%% Copyright space is enabled by default as required by guidelines.
+%% It is disabled by the 'review' option or via the following command:
+% \nocopyrightspace
+
+\vgtcinsertpkg
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% START OF THE PAPER %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%% The ``\maketitle'' command must be the first command after the
+%% ``\begin{document}'' command. It prepares and prints the title block.
+
+%% the only exception to this rule is the \firstsection command
+%\firstsection{Introduction} % or "Motivation"
+
+\maketitle
+
+\input{introduction}
+
+\input{background}
+
+\input{technical}
+
+\input{evaluation}
+
+\input{future}
+
+\input{summary}
+
+%\bibliographystyle{abbrv}
+\bibliographystyle{abbrv-doi-hyperref}
+%%use following if all content of bibtex file should be shown
+%\nocite{*}
+\bibliography{report}
+\end{document}
+

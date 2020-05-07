@@ -1,0 +1,35 @@
+\section{Overview}
+\label{sec:overview}
+Large-scale parallel applications have become the backbone of a wide variety of scientific and technological research\cite{ashby2010opportunities,
+hoisie2012ascr}. Deciphering features from the runtime system of these appications as well as optimizing them is a significant and largely unsolved problem\cite{daly2011tools}. Optimizing resources related to time-oriented process scheduling is essential for productivity. Time series visualization provides a
+practical medium for exploratory visual data analysis of these parallel systems\cite{aigner2011visualization}. Typically, high-end scientific
+simulations require time consuming and intensive operations, incurring massive temporal dataset to decipher. Interactive visual data exploration
+of these massive temporal dataset is becoming increasingly challenging due to the rapid generation of data, in the order of terabytes or petabytes.
+Therefore, an automated feature recommender system of a temporal dataset is essential for exploratory data analysis. It will also give clues on how different
+hardware metrics change over time, which could be valuable information for scientists required to run, analyze, and tweak high-end time consuming simulations.
+\par
+Phylanx\cite{tohid2018asynchronous} is a general purpose computation system of distributed arrays to enhance operations over large-scale distributed system. It
+is an actively-developed system to provide the benefits of distributed resources for data scientists. Phylanx first translates the code into PhySL, an intermediate
+representation in a domain-specific, functional language. The function calls, control flow operations, data operations, and blocks found in the PhySL
+representation are referred to as primitives. These primitives are translated to tasks in the HPX, a C++ standard library and asynchronous tasking runtime.
+The dependencies of each primitive are the arguments it needs to execute (which may be other primitives), data access operations, or any other constraints on
+variables the primitive uses. Temporal execution information of Phylanx is printed on a trace file and visualized using Traveler.
+\par
+The Traveler \cite{Traveler2019} is an integrated graph visualization system for asynchronous multi-task execution. It uses
+OTF2\cite{otf2_developer_community_2019_3356709} \cite{knupfer2012score} trace data generated from Phylanx execution, parse them, and represent them in
+different interactive views\textemdash Gantt view, Utilization view, Tree view, and Time series view, etc. Due to the massive number of temporal data, the
+loading time of these views becomes slower and conspicuous lagging becomes apparent during interactive inspection over these views. The goal of my project is
+the identification and discovery of interesting features\textemdash like cache overflow, unnecessary memory overhead, CPU exhaustion or starvation,
+etc .\textemdash from the temporal dataset of hardware performance metric. In the aim of achieving this goal, an automated learning based recommender system
+has been developed to predict and recommend interesting features which will be useful for further analysis of the runtime system (the trace data it is used
+to learn from). The contributions of my project are summarized as follows:
+\begin{itemize}
+    \item Recommender Engine modeling - The dual space model (DSM)\cite{huang2018optimization} proposed by Huang et al. has been adapted to design a
+    recommender engine.
+    \item Feature abstraction - Temporal data of a performance metric from different hardware locations have been converted into individual input features for
+    the recommender engine.
+    \item Data adapter - An intermediate parser has been designed to receive data from the Traveler platform to the recommender engine, parse them and
+    sent back through a convenient interface.
+    \item Performance evaluation - An elementary performance evaluation has been conducted to assess the practicality and feasibility of the designed
+    recommender model.
+\end{itemize}

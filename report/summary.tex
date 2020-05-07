@@ -1,0 +1,12 @@
+\section{Conclusion}
+\label{sec:summary}
+Learning based interactive database exploration is an ongoing research problem in scientific community. I started working on this project to make the data
+exploration of Traveler more interactive and convenient for the user based on an active learning based prediction technique. After doing some literature
+study, I've came to know about state-of-the art works like \emph{ForeCahce}\cite{battle2016dynamic}, \emph{Kyrix}\cite{tao2019kyrix},
+\emph{Skyrec}\cite{liu2019improvement}, \emph{DSM}\cite{huang2018optimization}, etc. I designed a parser to fetch live formatted OTF2 performance data from
+the Traveler. To make the data labeling easier, a separate script is written to label the dataset and present to the recommender model. The parsed data is
+formated accordingly to the feature abstraction described in Section\ref{sec:technical}. Then by following the DSM algorithm, the basic classifier engine has
+been developed with slight tweaking according to the domain needs. A conveninent interface has been provided to make prediction feedback available towards
+the Traveler system. Lastly, A priliminary performance evaluation has been conducted to assess the engine on how well it predicted based on the labelling
+provided by the user. A comprehensive report has been created and necessary description provided in this report with the insights learned through this
+project.

@@ -1,0 +1,12 @@
+\section{Future Direction}
+\label{sec:future}
+There are several limitations and pending modifications exist in my project which will be a good starting point for further work in the future. First of all,
+an extensive user data collection should be conducted to make the prediction engine more valid and practically representative. A seperate
+script can be used to either get new user input or incorporate old user data for the recommender system. Secondly, the implemented dual space model only
+initiates with the labeled user data once prior to the iterations. The original DSM implementation used a probabilty function to choose between labeled
+user data and DSM predicted data in successive iterations as the input for the consecutive iterations. This uncertainty sampling technique is necessary to
+reduce the version space, the space of all configuration of the classification model consistent with the labeled data, for enabling an approximation of the
+optimal algorithm. Thirdly, The increased number of hardware locality in a large-scale systems can easily exhaust the feature dimension. Therefore,
+factorization techniques should be adapted to reduce the high-dimensional data space to a lower-dimensional spaces. Lastly, a comprehensive user study should
+be conducted to evaluate the performance of the recommender system. Also, how well the prediction aligned with real life hardware artifacts can also be tracked
+and used to create a validation dataset for the system.

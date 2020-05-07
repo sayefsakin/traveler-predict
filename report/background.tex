@@ -1,0 +1,15 @@
+\section{Related Works}
+\label{sec:background}
+Large-scale web-based pan/zoom visualizations developed by Tao et al.\cite{tao2019kyrix} is more relevant to my project. Their technique was mostly to
+predict next pan/zoom location which required less intensive learning based techniques. They developed a declarative language for easy specification of user
+behavior and data management model. Battle et al.\cite{battle2019role} did thorough investigation of explorative data analysis by showing comparison between
+latency, task complexity, and user performance. An earlier work\cite{battle2014dynamic} from the same author analysed different statistical characteristics
+(e.g. histogram) among multiple user interactions over temporal dataset. They also proposed a general purpose tool, \emph{ForeCache}\cite{battle2016dynamic},
+for exploratory browsing of large dataset. By learning first from the user's movements, they prefetched the data using different statistical data
+characteristics to find similarity to the user's past behavior. Their data model and the prediction engine design has been considered a baseline for
+measurement in visual data exploratory domain. Liu et al.\cite{liu2013immens} proposed a specialized data structure called multivariate data tiles for
+dynamic loading and pre-processing of data. They also synthesis the data for better representation and processing parallelization. Huang el al.
+\cite{huang2018optimization} used active learning framework to leverage the subspatial context and conjunctive context of database queries. Their developed
+dual space model algorithm able to bypass the slow convergence problem of active learning techniques. In my project, most of their proposed mechanisms have
+been adapted due to the high similarity of the problem domain and use cases. \emph{Skyrec}\cite{liu2019improvement} of Liu et al. used query session summary
+method to ease-up the query recommendations. They also developed a frontend interface named \emph{SkyServer Surfliner} for interactive recommendation.
