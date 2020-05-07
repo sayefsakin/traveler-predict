@@ -24,3 +24,5 @@ Then
 ```shell script
 ./traveler-predict.py PAPI_TOT_CYC 1000 1242233747 1664725001 100 0.7
 ```
+
+The final report is here at: `report.pdf`
