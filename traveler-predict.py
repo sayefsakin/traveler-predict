@@ -92,14 +92,16 @@ def main():
     # dr.plotTimeSeries(location3_data, c, metric)
 
     acc = 0
+    den = 0
     for i, d in enumerate(labeled_samples):
         ul = get_user_label(d['features'])
         if d['label'] == 0:
             continue
         if ul == d['label']:
             acc = acc + 1
-
-    print(str(acc / len(labeled_samples)))
+        den = den + 1
+    print("alpha: ", end='')
+    print(str(acc / den))
 
 if __name__ == '__main__':
     main()

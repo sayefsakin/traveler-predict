@@ -1,60 +1,37 @@
 \section{Evaluation}
 \label{sec:evaluation}
-How did you evaluate.
-%The evaluation is conducted in two phases. In the first phase, a short presentation of this project was given in front of some students and their feedback was
-%collected over an online form. In the second phase, an email was sent to the Phylanx developers, containing some screenshots of the visualization and their
-%feedback was collected over email. Both of these evaluation phases are described in the following two subsections.
-%%
-%%
-%\subsection{Non-expert Feedback}
-%A short presentation about this project was delivered with some visual demonstration (with screenshots) in front of a set of participants. The participants of
-%my presentation are 10 graduate students from the department of computer science, applied mathematics, lunar \& planetary lab of University of Arizona. During
-%the presentation, I covered both the backend data handling and frontend visual design and representation methodologies after providing some background
-%knowledge of Phylanx and traveler-integrated project. With the help of the course instructor, an online form was presented to the participants and feedback
-%was collected from each of them. The participants were asked about what they think the strength of my project and how it could be improved.
-%\par
-%Most of the participants found the visualization intuitive as it works with temporal data and presents that in conventional way. Some of them liked the
-%juxtaposed views and interactive features over multiple views like zoom in/out, mouse hover, etc. Two participants also commented that, my visualization
-%makes it easier and clear to find points where CPU utilization cycles are changing which will help in debugging. There is also one participant who couldn't
-%understand my visualization as the participant mentioned the presentation wasn't clear enough.
-%\par
-%The suggestions given by the participants were very informative and helpful toward the future direction of my project. Most of the participants suggested to
-%use color encoding based on some properties to increase the identification of individual line. One mentioned to use pop-out functionality to highlight or
-%isolate data points. Some pointed out to use clustering methods for different location to make the visualization less cluttered. On participant advised to
-%use binary search tree during data bundling instead of the interval tree.
-%%
-%%
-%\subsection{Expert Evaluation}
-%Since I worked with OTF2 trace data generated from Phylanx execution on parallel machines, I reached out to Phylanx team members, via email, for their feedback
-%on how my visualization can augment into their debugging and artifact isolation process. I included several screenshots of my visualization with relevant
-%description of the functionalities. Two of the principal investigators of Phylanx replied to that email and commented on the visualization.
-%\par Both of the principal investigators praised the newly developed line chart, after some back-and-forth emailing with the
-%functionality description. One of them pointed out that, the core design is useful to represent the metric PAPI\_L1\_DCM (level 1 data cache misses), while
-%in my design, I used the metric PAPI\_TOT\_CYC (cpu cycle). Also a bug on the trace data\textemdash which prints the same metric values for consecutive
-%enter/leave events\textemdash was manifested and acknowledged by the investigators.
-%%
-%%
-%\subsection{Discussion}
-%It was clear from the evaluation that the newly developed line chart in association with other views (Gantt view, Utilization view) augments in understanding
-%of the trace data. Though only one metric is used, the core design of the visualization is useful to represent different hardware performance metric values.
-%It also becomes intuitive to track down primitive and its related metric values because of the juxtaposed view design. Small tweaking on the gantt view, like
-%highlighting similar intervals with same GUID and primitive name helped to instrument the dependencies among them.
-%\par Several interactive features like zoom in/out, panning increase the readability of the line chart which makes the frontend more effective for
-%representing traces from longer running program executions. Also the usage of interval tree on the backend with some performance tweaking on histogram
-%calculation make it more adaptable to higher number of input trace data. These design choices make the visualization comparatively more scalable with respect
-%to the previous implementation of the traveler project. Though the visual design and the backend implementation hasn't ready for adapting into other parallel
-%system (than Phylanx), it gives a proper indication on how to do so\textemdash with convenient API design and backend data parsing would easily make it
-%adaptable to other distributed programs.
-%\subsection{Limitations}
-%The target population (domain expert) for this project is really small\textemdash only limited to the team members of Phylanx. Since the traveler project is an
-%actively developed project, it has some complex procedures on live deployment and dependency on over several other modules to
-%become ready. Because of this, a live demo for the limited number of Phylanx experts was not possible during the evaluation process. Though it could be done
-%with remote desktop sharing methods, it will not be convenient for the participants. Again, while collecting feedback with email, the description of the
-%views was not clear and concise. A formatted description with related questionnaries and prerecorded video demo would make the evaluation over the email more
-%convenient.
-%\subsection{Future Evaluations}
-%In future, more formatted evaluation will be conducted through exhaustive feedback procedures to make the visualization more effective for the Phylanx
-%members. A live demo will be prepared by deploying the project and make it accessible for the participants. A set of predefined questions will be prepared
-%for the evaluation process. The questions will be presented and feedback will be collected via online forms, so that the participants can submit the forms in
-%their convenient time just by testing the live demo. Relevant logging system will be maintained to track down the interaction of the participants over the
-%visualizations.
+Due to the lack of real users presence, a comprehensive real life user feedback cannot be collected for evaluation. After completing the training, I've
+presented an accuracy result, which is the ratio of the number of positive region data to unknown region data. Due to the faster elimination technique
+described in section\ref{sec:technical}, my model quickly removed the unlabeled data (hence, label them with wither 1 or -1). The iterative learning process
+is terminated based on the accuracy achieved by this process. More details and reasoning behind this approach can be found in\cite{huang2018optimization}.
+%
+\par
+After completing the learning process, another evaluation accuracy result is printed, which is calculated as follows:
+\[
+    \alpha = \dfrac{\text{predicted labels equal to the user label}}{\text{total number of labeled data by user}}
+\]
+%
+%
+\begin{table}[h!]
+    \begin{center}
+        \caption{Evaluation Results}
+        \label{tab:table1}
+        \begin{tabular}{c|c|c|c|c|c} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+            \textbf{Epochs} & \textbf{Begin} & \textbf{end} & \textbf{bins} & \textbf{$\lambda$} & \textbf{$\alpha$}\\
+            \hline
+            44 & 1242233747 & 1664725001 & 1000 & 0.8 & 0.519\\
+            62 & 416663000 & 1664725001 & 2000 & 0.6 & 0.713\\
+            56 & 972219900 & 1664725001 & 2000 & 0.6 & 0.625\\
+            40 & 416663000 & 972219900 & 2000 & 0.5 & 0.503\\
+        \end{tabular}
+    \end{center}
+\end{table}
+%
+%
+In the table~\ref{tab:table1}, corresponding evaluation accuracy is presented. Note that, in this case, the total number of CPU thread location was fixed at
+10. Here, the accuracy drops if the $\lambda$ value reduced, which is evidential that, the algorithm was being stopped prematurely (with any required
+training). Again, increasing the time range also helps to increase the accuracy. Real inspection on the time series visualization revealed that, this is because
+of the higher number of negative label data which owes to the fixed bin size that eliminated some of the interesting data points.
+\par
+It is obvious that, measuring evaluation accuracy in this way is not representative of what actually being learned. Appropriate labels generated from an
+exhaustive user case study would be helpful to actually measure the real performance of the recommender model.
