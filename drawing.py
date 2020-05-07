@@ -33,3 +33,12 @@ class Drawing(object):
         plt.ylabel(getLocationTitleFromList(data))
         plt.title(plot_title)
         plt.show()
+
+    def plotTimeSeries2(self, data, plot_title):
+        l = getDatasetLabel(data)
+        plt.scatter(getDatasetTime(data), l, c=l, cmap='viridis', alpha=1)
+        # plt.xticks(xInd, xInd)
+        plt.xlabel('Timestamp')
+        # plt.ylabel(getLocationTitleFromList(data))
+        plt.title(plot_title)
+        plt.show()

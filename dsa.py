@@ -20,7 +20,7 @@ def calculate_accuracy(d_plus, d_u):
     return len(d_plus) / den
 
 
-def compute_dsa(D, _lambda, _gamma, max_iter):
+def compute_dsa(D, _lambda, max_iter):
     def getFeatureList(dataset):
         fet = []
         for ei in dataset:
@@ -43,18 +43,17 @@ def compute_dsa(D, _lambda, _gamma, max_iter):
         D_u.append(i)
     D_labeled = []
     D_unlabeled = []
-    D_labeled_by_user = []
+    D_labeled_by_dsm = []
     poolSize = 10
     for i, d in enumerate(D):
         if d['label'] != 0:
-            D_labeled_by_user.append(i) #it is D_label in the text, but D_label isnt use anywhere below
+            D_labeled_by_dsm.append(i) #it is D_label in the text, but D_label isnt use anywhere below
         else:
             D_unlabeled.append(i)
-    D_labeled_by_dsm = []
     epoch = 0
 
     while True:
-        for i in D_labeled_by_user:
+        for i in D_labeled_by_dsm:
             if D[i]['label'] == 1:
                 R_plus.append(D[i]['features'])
             else:
@@ -76,21 +75,15 @@ def compute_dsa(D, _lambda, _gamma, max_iter):
 
         accuracy = calculate_accuracy(D_plus, D_u)
 
-        for d in D_labeled_by_user:
-            D_labeled.append(d)
         for d in D_labeled_by_dsm:
             D_labeled.append(d)
 
-        for d in D_labeled_by_user:
-            if d in D_unlabeled:
-                D_unlabeled.remove(d)
         for d in D_labeled_by_dsm:
             if d in D_unlabeled:
                 D_unlabeled.remove(d)
 
         # train classifier
         classifier = DSAClassifier(getFeatureList(D_labeled), getLabelList(D_labeled))
-        D_labeled_by_user = []
         D_labeled_by_dsm = []
 
         # if random.uniform(0.0, 1.0) <= _gamma:
@@ -115,3 +108,5 @@ def compute_dsa(D, _lambda, _gamma, max_iter):
         epoch = epoch + 1
         if epoch >= max_iter or accuracy >= _lambda:
             break
+    print()
+    return classifier

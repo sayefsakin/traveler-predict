@@ -11,9 +11,9 @@ def get_user_label(s):
         return 0
 
 
-def assign_user_label(sample):
+def assign_user_label(sample, d):
     labeled_samples = []
-    for s in sample:
+    for i, s in enumerate(sample):
         lab = get_user_label(s)
-        labeled_samples.append({'features': s, 'label': lab})
+        labeled_samples.append({'features': s, 'label': lab, 'time': d[i][1]})
     return np.array(labeled_samples)
